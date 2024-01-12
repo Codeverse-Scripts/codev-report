@@ -1,0 +1,351 @@
+@import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap");
+@import url("https://fonts.cdnfonts.com/css/satoshi");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  letter-spacing: -0.36px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  color: #fff;
+  font-family: "Istok Web";
+  display: none;
+}
+
+main {
+  width: 960px;
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+main .bottom {
+  border-radius: 10px;
+  background: #1A1A1D;
+  padding: 38px;
+  width: 100%;
+  position: absolute;
+  bottom: -150px;
+  left: 0;
+  display: flex;
+  gap: 23px;
+}
+main .bottom .btn {
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+  cursor: pointer;
+  gap: 6px;
+  font-family: "Satoshi" !important;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: -0.16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+main .bottom .btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+main .bottom .btn#sendBtn {
+  display: none;
+}
+main .bottom .btn.primary {
+  background: #2E2E31;
+}
+main .bottom .btn.primary:hover {
+  background: #39393c;
+}
+main .bottom .btn.secondary {
+  background: linear-gradient(132deg, #4E972B 0%, #478A28 100%);
+}
+main .bottom .btn.secondary:hover {
+  background: linear-gradient(132deg, #54a32f 0%, #4E972B 100%);
+}
+main .bottom .btn.third {
+  background: linear-gradient(132deg, #8A2828 0%, #7D2424 100%);
+}
+main .bottom .btn.third:hover {
+  background: linear-gradient(132deg, #982d2d 0%, #8A2828 100%);
+}
+main .box {
+  border-radius: 10px;
+  background: #1A1A1D;
+  padding: 48px;
+  width: 100%;
+}
+main .box .header {
+  width: 100%;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+main .box .header .close-btn {
+  position: absolute;
+  right: 0px;
+  top: 0;
+  width: 31px;
+  height: 31px;
+  border-radius: 5px;
+  background: #2E2E31;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+main .box .header .close-btn:hover {
+  background: #3a3a3e;
+}
+main .box .header .back-btn {
+  position: absolute;
+  right: 40px;
+  top: 0;
+  width: 31px;
+  height: 31px;
+  border-radius: 5px;
+  background: #2E2E31;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+main .box .header .back-btn:hover {
+  background: #3a3a3e;
+}
+main .box .header .title {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 120%;
+}
+main .box .header .subtitle {
+  color: #858585;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.14px;
+}
+main .box .container {
+  position: relative;
+  height: 55px;
+  transition: height 0.5s;
+  overflow: hidden;
+}
+main .box .container.report-cont .categories {
+  display: flex;
+}
+main .box .container.report-cont .reports-wrapper {
+  display: none;
+}
+main .box .container.admin-cont {
+  height: 420px;
+}
+main .box .container.admin-cont .categories {
+  display: none;
+}
+main .box .container.admin-cont .reports-wrapper {
+  display: flex;
+}
+main .box .container.wide {
+  height: 420px !important;
+}
+main .box .container .categories {
+  height: 48px;
+  position: relative;
+}
+main .box .container .categories .category {
+  transition: width 0.5s, left 0.5s;
+  width: 33.33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  position: absolute;
+  background: #252528;
+  border-right: 1px solid #19191C;
+  border-left: 1px solid #19191C;
+  cursor: pointer;
+}
+main .box .container .categories .category:hover {
+  background: #2E2E31;
+}
+main .box .container .categories .category.active {
+  background: #2E2E31;
+  z-index: 999;
+}
+main .box .container .categories .category.selected {
+  left: 0% !important;
+  width: 100% !important;
+  border-radius: 5px !important;
+}
+main .box .container .categories .category:first-child {
+  border-radius: 5px 0px 0px 5px;
+  border: 0;
+}
+main .box .container .categories .category:nth-child(2) {
+  left: 33.33%;
+}
+main .box .container .categories .category:last-child {
+  border-radius: 0px 5px 5px 0px;
+  border: 0;
+  left: 66.66%;
+}
+main .box .container .categories .category span {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+main .box .container .categories .category .icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 22px;
+}
+main .box .container .reports-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+main .box .container .reports-wrapper .reports-header {
+  margin-bottom: 24px;
+  display: flex;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -0.2px;
+  align-items: center;
+  border-radius: 5px;
+  background: #292929;
+  padding: 14px 19px;
+}
+main .box .container .reports-wrapper .reports-header div {
+  display: flex;
+  justify-content: center;
+}
+main .box .container .reports-wrapper .reports-header .id {
+  width: 10%;
+  justify-content: start;
+}
+main .box .container .reports-wrapper .reports-header .player {
+  width: 25%;
+}
+main .box .container .reports-wrapper .reports-header .asister {
+  width: 25%;
+}
+main .box .container .reports-wrapper .reports-header .category-a {
+  width: 20%;
+}
+main .box .container .reports-wrapper .reports-header .action {
+  width: 20%;
+  justify-content: end;
+}
+main .box .container .reports-wrapper .reports {
+  overflow-y: scroll;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: 349px;
+}
+main .box .container .reports-wrapper .reports::-webkit-scrollbar {
+  width: 0px;
+}
+main .box .container .reports-wrapper .reports .report {
+  display: flex;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -0.2px;
+  align-items: center;
+  border-radius: 5px;
+  background: #2C2C2D;
+  padding: 20px 19px;
+}
+main .box .container .reports-wrapper .reports .report div {
+  display: flex;
+  justify-content: center;
+}
+main .box .container .reports-wrapper .reports .report .id {
+  width: 10%;
+  justify-content: start;
+}
+main .box .container .reports-wrapper .reports .report .player {
+  width: 25%;
+}
+main .box .container .reports-wrapper .reports .report .asister {
+  width: 25%;
+}
+main .box .container .reports-wrapper .reports .report .category-a {
+  width: 20%;
+}
+main .box .container .reports-wrapper .reports .report .action {
+  width: 20%;
+  justify-content: end;
+}
+main .box .container .reports-wrapper .reports .report .action .btn {
+  padding: 10px 18px;
+  border-radius: 5px;
+  background: #1A1A1D;
+  cursor: pointer;
+}
+main .box .container .reports-wrapper .reports .report .action .btn:hover {
+  background: #141416;
+}
+main .box .container .text-box-wrapper {
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  gap: 25px;
+}
+main .box .container .text-box-wrapper .text-box .title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+}
+main .box .container .text-box-wrapper .text-box .disabled {
+  pointer-events: none;
+}
+main .box .container .text-box-wrapper .text-box input {
+  font-family: "Satoshi";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.16px;
+  color: #fff;
+  padding: 16px 20px;
+  outline: none;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #2E2E31;
+  background: linear-gradient(170deg, rgba(46, 46, 49, 0.1) 0%, rgba(46, 46, 49, 0) 99.44%);
+}
+main .box .container .text-box-wrapper .text-box textarea {
+  resize: none;
+  height: 200px;
+  font-family: "Satoshi";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.16px;
+  color: #fff;
+  padding: 16px 20px;
+  outline: none;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #2E2E31;
+  background: linear-gradient(170deg, rgba(46, 46, 49, 0.1) 0%, rgba(46, 46, 49, 0) 99.44%);
+}
+
+/*# sourceMappingURL=style.css.map */
