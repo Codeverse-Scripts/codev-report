@@ -7,12 +7,13 @@ local uiLoaded = false
 
 RegisterNUICallback("uiLoaded", function(_, cb)
     uiLoaded = true
-    PlayerData = Config.Framework == "esx" and Framework.GetPlayerData() or Framework.Functions.GetPlayerData()
     cb(Config.Framework == "esx" and PlayerData.firstName or PlayerData.charinfo.firstname)
 end)
 
 CreateThread(function()
     while true do
+        PlayerData = Config.Framework == "esx" and Framework.GetPlayerData() or Framework.Functions.GetPlayerData()
+        
         if uiLoaded and not loggedIn and next(PlayerData) then
             loggedIn = true
             TriggerServerEvent("codev-report:server:loaded")
