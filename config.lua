@@ -2,6 +2,7 @@ Config = {
     Framework = "qb", -- Framework name (esx or qb)
 
     BotName = "CodeV Report", -- Name of the bot that will send the reports to the discord channel
+    ReportCooldown = 10, -- Time in minutes
     Webhook = "", -- Discord webhook link
 
     Admins = { -- Discord IDs of the admins
@@ -11,6 +12,7 @@ Config = {
     Translations = {
         ["report"] = "Report",
         ["report_alert"] = "There is a new report!",
+        ["report_spam"] = "You can't report so quickly!",
         ["sent"] = "Sent",
         ["report_sent"] = "Report successfully sent.",
         ["deleted"] = "Deleted",
