@@ -4,6 +4,7 @@ Reports = {}
 PlayerData = {}
 local loggedIn = false
 local uiLoaded = false
+local canReport = true
 
 RegisterNUICallback("uiLoaded", function(_, cb)
     uiLoaded = true
@@ -53,8 +54,10 @@ end)
 
 RegisterNetEvent('codev-report:client:alertPlayer', function(alertType)
     if alertType == "bring" then
+        canReport = true
         Config.Notification(Config.Translations[alertType], Config.Translations["admin_bringed"], "primary", 5000)
     elseif alertType == "goto" then
+           canReport = true
         Config.Notification(Config.Translations[alertType], Config.Translations["admin_came"], "primary", 5000)
     end
 end)
@@ -68,6 +71,15 @@ RegisterNUICallback("sendReport", function(data)
     SetNuiFocus(0,0)
     TriggerServerEvent("codev-report:server:sendReport", data)
     Config.Notification(Config.Translations["sent"], Config.Translations["report_sent"], "success", 5000)
+    local time = Config.ReportCooldown * 60
+	local pastTime = 0
+	    canReport = false
+		while (time > pastTime) do
+		Citizen.Wait(1000)
+		pastTime = pastTime + 1
+		timeLeft = time - pastTime
+	end
+		canReport = true
 end)
 
 RegisterNUICallback("getReports", function(_, cb)
@@ -97,10 +109,12 @@ end)
 
 -- COMMANDS --
 RegisterCommand("report", function()
-    if loggedIn then
+    if loggedIn and canReport then
         SetNuiFocus(1, 1)
         SendNUIMessage({
             action = "openReportMenu",
         })
+    else
+        Config.Notification(Config.Translations["report"], Config.Translations["report_spam"], "info", 5000)
     end
 end, false)
